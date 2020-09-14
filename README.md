@@ -70,15 +70,38 @@ How does someone use the code ?
 
 ## API
 
-### Data Architecture
+## Data Architecture
 
-#### User
+### Task
+- Name: str
+- Owner: User
+- Attendees: List of User
+- List of constraints
+- List of Topos
+- computable: bool
+- status: (Completed|Current|Failed|Waiting)
 
-#### Task
+### Constraint
+- Name: str
+- Pipeline_complete_test: (shell command|docker)?
 
-#### Period
+### Topos
+- Period
+- Area
 
-#### Zone
+### Period
+- Start Date
+- End Date
+- TimeZone
+
+### Area
+- Name ?
+- List of Points
+
+### Point
+- Altitude: float
+- Longitude: float
+- Latitude: float
 
 ## Contributing
 
