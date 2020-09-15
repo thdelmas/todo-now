@@ -75,13 +75,13 @@ How does someone use the code ?
 ### Event
 - Name: str
 - Owner: User
-- Attendees: User list
-- Child events: Event list
-- Topos list
-- Constraint list
+- Attendees: User list (Opionnal)
+- Child events: Event list (Optionnal)
+- Topos list (Optionnal)
+- Constraint list (Optionnal)
 - computable: bool
-- command: shell script
-- descritpion: text
+- command: shell script (Optionnal)
+- descritpion: text (Optionnal)
 - status: (Completed|Current|Failed|Waiting)
 
 
@@ -90,17 +90,18 @@ How does someone use the code ?
 - Pipeline_complete_test: (shell command|docker)?
 
 ### Topos
-- Period
-- Area
+- Name: str (Optionnal)
+- Period (Optionnal)
+- Area (Optionnal)
 
 ### Period
-- Start Date
-- End Date
+- Start Date (Optionnal)
+- End Date (Optionnal)
 - TimeZone
 
 ### Area
-- Name ?
-- Point list
+- Name: str (Optionnal)
+- Point list (Optionnal)
 
 ### Point
 - Altitude: float
