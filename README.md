@@ -72,14 +72,18 @@ How does someone use the code ?
 
 ## Data Architecture
 
-### Task
+### Event
 - Name: str
 - Owner: User
-- Attendees: List of User
-- List of constraints
-- List of Topos
+- Attendees: User list
+- Child events: Event list
+- Topos list
+- Constraint list
 - computable: bool
+- command: shell script
+- descritpion: text
 - status: (Completed|Current|Failed|Waiting)
+
 
 ### Constraint
 - Name: str
@@ -96,7 +100,7 @@ How does someone use the code ?
 
 ### Area
 - Name ?
-- List of Points
+- Point list
 
 ### Point
 - Altitude: float
@@ -128,3 +132,13 @@ License - see the [LICENSE](LICENSE) file for details
 ## Acknowledgments
 
 ## References
+
+[ntask](https://www.ntaskmanager.com/)
+
+[wunderlist](https://www.wunderlist.com/)
+
+[Todoist](https://todoist.com/)
+
+[Habitica](https://habitica.com/)
+
+[Remember the milk](https://www.rememberthemilk.com/)
