@@ -75,12 +75,14 @@ How does someone use the code ?
 ### Event
 - Name: str
 - Owner: User
+- Organizers: User list
 - Attendees: User list (Opionnal)
+- Pretendants: User list (Optionnal)
 - Child events: Event list (Optionnal)
 - Topos list (Optionnal)
 - Constraint list (Optionnal)
 - computable: bool
-- command: shell script (Optionnal)
+- recipe: (shell script|str) (Optionnal)
 - descritpion: text (Optionnal)
 - status: (Completed|Current|Failed|Waiting)
 
