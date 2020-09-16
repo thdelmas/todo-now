@@ -128,6 +128,11 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 
 ## Authors
 
+* **Théophile Delmas** - *Initial design*
+
+See also the list of [contributors](https://github.com/thdelmas/todo-now/graphs/contributors) who participated in this project.
+
+
 ## Licence
 
 License - see the [LICENSE](LICENSE) file for details
