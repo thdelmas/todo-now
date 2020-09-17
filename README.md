@@ -4,6 +4,7 @@
 
 * [About ToDo-Now](#about-todo-now)
   * [Roadmap](#roadmap)
+    * [Data Architecture](#data-architecture)
   * [Built With](#built-with)
   * [Security](#security)
     * [Known Bugs](#known-bugs)
@@ -13,7 +14,6 @@
   * [Testing](#testing)
   * [Usage](#usage)
 * [API](#api)
-  * [Data Architecture](#data-architecture)
 * [Contributing](#contributing)
 * [Contact Us](#contact-us)
 * [Authors](#authors)
@@ -28,51 +28,9 @@ Todo list sort by optimization
 
 See the [open issues](https://github.com/thdelmas/todo-now/issues) for a list of proposed features.
 
-### Built-With
+#### Data Architecture
 
-### Security
-
-#### Known Bugs
-
-See the [open issues](https://github.com/thdelmas/todo-now/issues) for a list of known issues.
-
-## Getting Started
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-```sh
-
-```
-
-### Installation
-
-```sh
-
-```
-
-### Testing
-
-How does someone test the code ?
-
-```sh
-
-```
-
-### Usage
-
-How does someone use the code ?
-
-```sh
-
-```
-
-## API
-
-## Data Architecture
-
-### Event
+##### Event
 Name | Required | Data Type
 -----|----------|----------
 name | True | str
@@ -89,38 +47,56 @@ descritpion | False | text
 status | False | str
 
 
-### Constraint
+##### Constraint
 Name | Required | Data Type
 -----|----------|----------
 name | True | str
 pipeline_complete_test | True | shell command, docker, CI, ?
 
-### Topos
+##### Topos
 Name | Required | Data Type
 -----|----------|----------
 name | True | str
 period | False | Period
 area | False | Area
 
-### Period
+##### Period
 Name | Required | Data Type
 -----|----------|----------
 start_date | False | date
 end_date |  False | date
 timezone | True | ?
 
-### Area
+##### Area
 Name | Required | Data Type
 -----|----------|----------
 name | False | str
 points | True | Point list
 
-### Point
+##### Point
 Name | Required | Data Type
 -----|----------|----------
 altitude | True | float
 longitude | True | float
 latitude | True | float
+
+
+### Built-With
+
+### Security
+
+#### Known Bugs
+
+See the [open issues](https://github.com/thdelmas/todo-now/issues) for a list of known issues.
+
+## Getting Started
+
+### Installation
+
+```sh
+git clone https://github.com/thdelmas/todo-now
+```
+## API
 
 ## Contributing
 
