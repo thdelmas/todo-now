@@ -73,42 +73,54 @@ How does someone use the code ?
 ## Data Architecture
 
 ### Event
-- Name: str
-- Owner: User
-- Organizers: User list
-- Attendees: User list (Opionnal)
-- Pretendants: User list (Optionnal)
-- Child events: Event list (Optionnal)
-- Topos list (Optionnal)
-- Constraint list (Optionnal)
-- computable: bool
-- recipe: (shell script|str) (Optionnal)
-- descritpion: text (Optionnal)
-- status: (Completed|Current|Failed|Waiting)
+Name | Required | Data Type
+-----|----------|----------
+name | True | str
+owner | False | User
+organizers | False | User list
+attendees | False | User list
+pretendants | False | User list
+child events | False | Event list
+topos | False | Topos list
+constraints | False | constraint list
+human_action | False | str
+machine_action | False | shell script
+descritpion | False | text
+status | False | str
 
 
 ### Constraint
-- Name: str
-- Pipeline_complete_test: (shell command|docker)?
+Name | Required | Data Type
+-----|----------|----------
+name | True | str
+pipeline_complete_test | True | shell command, docker, CI, ?
 
 ### Topos
-- Name: str (Optionnal)
-- Period (Optionnal)
-- Area (Optionnal)
+Name | Required | Data Type
+-----|----------|----------
+name | True | str
+period | False | Period
+area | False | Area
 
 ### Period
-- Start Date (Optionnal)
-- End Date (Optionnal)
-- TimeZone
+Name | Required | Data Type
+-----|----------|----------
+start_date | False | date
+end_date |  False | date
+timezone | True | ?
 
 ### Area
-- Name: str (Optionnal)
-- Point list (Optionnal)
+Name | Required | Data Type
+-----|----------|----------
+name | False | str
+points | True | Point list
 
 ### Point
-- Altitude: float
-- Longitude: float
-- Latitude: float
+Name | Required | Data Type
+-----|----------|----------
+altitude | True | float
+longitude | True | float
+latitude | True | float
 
 ## Contributing
 
