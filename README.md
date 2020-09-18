@@ -63,9 +63,8 @@ area | False | Area
 ##### Period
 Name | Required | Data Type
 -----|----------|----------
-start_date | False | date
-end_date |  False | date
-timezone | True | ?
+start_date | False | date + timezone
+end_date |  False | date + timezone
 
 ##### Area
 Name | Required | Data Type
