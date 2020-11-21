@@ -30,57 +30,18 @@ See the [open issues](https://github.com/thdelmas/todo-now/issues) for a list of
 
 #### Data Architecture
 
-##### Event
-Name | Required | Data Type
+##### Topos ((X;Y;Z;T) obj)
+
+Name | Data Type | Value
 -----|----------|----------
-name | True | str
-owner | False | User
-organizers | False | User list
-attendees | False | User list
-pretendants | False | User list
-child events | False | Event list
-topos | False | Topos list
-constraints | False | constraint list
-human_action | False | str
-machine_action | False | shell script
-descritpion | False | text
-status | False | str
-
-
-##### Constraint
-Name | Required | Data Type
------|----------|----------
-name | True | str
-pipeline_complete_test | True | shell command, docker, CI, ?
-
-##### Topos
-Name | Required | Data Type
------|----------|----------
-name | True | str
-period | False | Period
-area | False | Area
-
-##### Period
-Name | Required | Data Type
------|----------|----------
-start_date | False | date + timezone
-end_date |  False | date + timezone
-
-##### Area
-Name | Required | Data Type
------|----------|----------
-name | False | str
-points | True | Point list
-
-##### Point
-Name | Required | Data Type
------|----------|----------
-altitude | True | float
-longitude | True | float
-latitude | True | float
-
+Data Name | Data Type | Value
+Data Name | Data Type | Value
+Data Name | Data Type | Value
 
 ### Built-With
+
+- [Docker](https://www.docker.com/)
+- [gin/gin-gonic](https://github.com/gin-gonic/gin)
 
 ### Security
 
