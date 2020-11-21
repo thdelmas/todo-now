@@ -93,9 +93,29 @@ See the [open issues](https://github.com/thdelmas/todo-now/issues) for a list of
 ### Installation
 
 ```sh
-git clone https://github.com/thdelmas/todo-now
+cd ~ && git clone https://github.com/thdelmas/todo-now
 ```
+
+### Run
+
+```sh
+cd ~/todo-now && docker-compose-up
+```
+
 ## API
+
+### Create your first topos
+
+```sh
+curl -X POST '127.0.0.1:8080/topoi' --data '{"text": "This is awesome !"}'
+```
+
+### List all topos
+
+
+```sh
+curl '127.0.0.1:8080/topoi'
+```
 
 ## Contributing
 

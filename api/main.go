@@ -14,12 +14,12 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-type Post struct {
+type Topos struct {
 	Text      string    `json:"text" bson:"text"`
 	CreatedAt time.Time `json:"createdAt" bson:"created_at"`
 }
 
-var posts *mgo.Collection
+var topoi *mgo.Collection
 
 func main() {
 	// Connect to mongo
@@ -32,21 +32,21 @@ func main() {
 	defer session.Close()
 	session.SetMode(mgo.Monotonic, true)
 
-	// Get posts collection
-	posts = session.DB("app").C("posts")
+	// Get topoi collection
+	topoi = session.DB("app").C("topoi")
 
 	// Set up routes
 	r := mux.NewRouter()
-	r.HandleFunc("/posts", createPost).
+	r.HandleFunc("/topoi", createTopos).
 		Methods("POST")
-	r.HandleFunc("/posts", readPosts).
+	r.HandleFunc("/topoi", readTopoi).
 		Methods("GET")
 
 	http.ListenAndServe(":8080", cors.AllowAll().Handler(r))
 	log.Println("Listening on port 8080...")
 }
 
-func createPost(w http.ResponseWriter, r *http.Request) {
+func createTopos(w http.ResponseWriter, r *http.Request) {
 	// Read body
 	data, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -54,27 +54,27 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Read post
-	post := &Post{}
-	err = json.Unmarshal(data, post)
+	// Read topos
+	topos := &Topos{}
+	err = json.Unmarshal(data, topos)
 	if err != nil {
 		responseError(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	post.CreatedAt = time.Now().UTC()
+	topos.CreatedAt = time.Now().UTC()
 
-	// Insert new post
-	if err := posts.Insert(post); err != nil {
+	// Insert new topos
+	if err := topoi.Insert(topos); err != nil {
 		responseError(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	responseJSON(w, post)
+	responseJSON(w, topos)
 }
 
-func readPosts(w http.ResponseWriter, r *http.Request) {
-	result := []Post{}
-	if err := posts.Find(nil).Sort("-created_at").All(&result); err != nil {
+func readTopoi(w http.ResponseWriter, r *http.Request) {
+	result := []Topos{}
+	if err := topoi.Find(nil).Sort("-created_at").All(&result); err != nil {
 		responseError(w, err.Error(), http.StatusInternalServerError)
 	} else {
 		responseJSON(w, result)
