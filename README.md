@@ -150,7 +150,7 @@ License - see the [LICENSE](LICENSE) file for details
 
 ### Documentation
 
-[Wikipedia Topos/Topoi](https://en.wikipedia.org/wiki/Topos#Elementary_topoi_(topoi_in_logic))
+[Wikipedia Topos/Topoi](https://en.wikipedia.org/wiki/Literary_topos)
 
 ### Similar tools
 
