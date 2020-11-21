@@ -8,12 +8,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/rs/cors"
-
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2"
 )
 
+// Topos obj
 type Topos struct {
 	Text      string    `json:"text" bson:"text"`
 	CreatedAt time.Time `json:"createdAt" bson:"created_at"`
@@ -36,21 +35,18 @@ func main() {
 	topoi = session.DB("app").C("topoi")
 
 	// Set up routes
-	r := mux.NewRouter()
-	r.HandleFunc("/topoi", createTopos).
-		Methods("POST")
-	r.HandleFunc("/topoi", readTopoi).
-		Methods("GET")
+	r := gin.Default()
+	r.POST("/topoi", createTopos)
+	r.GET("/topoi", readTopoi)
 
-	http.ListenAndServe(":8080", cors.AllowAll().Handler(r))
-	log.Println("Listening on port 8080...")
+	r.Run(":8080")
 }
 
-func createTopos(w http.ResponseWriter, r *http.Request) {
+func createTopos(ctx *gin.Context) {
 	// Read body
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := ioutil.ReadAll(ctx.Request.Body)
 	if err != nil {
-		responseError(w, err.Error(), http.StatusBadRequest)
+		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "Not found!"})
 		return
 	}
 
@@ -58,36 +54,26 @@ func createTopos(w http.ResponseWriter, r *http.Request) {
 	topos := &Topos{}
 	err = json.Unmarshal(data, topos)
 	if err != nil {
-		responseError(w, err.Error(), http.StatusBadRequest)
+		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "Not found!"})
 		return
 	}
 	topos.CreatedAt = time.Now().UTC()
 
 	// Insert new topos
 	if err := topoi.Insert(topos); err != nil {
-		responseError(w, err.Error(), http.StatusInternalServerError)
+		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "Not found !"})
 		return
 	}
+	ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": topos})
 
-	responseJSON(w, topos)
+	return
 }
 
-func readTopoi(w http.ResponseWriter, r *http.Request) {
+func readTopoi(ctx *gin.Context) {
 	result := []Topos{}
 	if err := topoi.Find(nil).Sort("-created_at").All(&result); err != nil {
-		responseError(w, err.Error(), http.StatusInternalServerError)
+		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "No topos found!"})
 	} else {
-		responseJSON(w, result)
+		ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": result})
 	}
-}
-
-func responseError(w http.ResponseWriter, message string, code int) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(code)
-	json.NewEncoder(w).Encode(map[string]string{"error": message})
-}
-
-func responseJSON(w http.ResponseWriter, data interface{}) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
 }

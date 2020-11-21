@@ -3,3 +3,6 @@
 
 # Mongo db data
 mongo-volume
+
+# VIW
+*.swp

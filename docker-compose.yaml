@@ -8,7 +8,9 @@ services:
     volumes:
       - './api:/go/src/app'
     depends_on:
-      - 'mongo'
+     - 'mongo'
+      
+
   mongo:
     image: 'mongo:latest'
     container_name: 'mongo'
@@ -16,3 +18,4 @@ services:
       - '27100:27017'
     volumes:
       - $PWD/mongo-volume/:/data/db:Z
+ 
