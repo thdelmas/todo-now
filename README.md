@@ -148,6 +148,12 @@ License - see the [LICENSE](LICENSE) file for details
 
 ## References
 
+### Documentation
+
+[Wikipedia Topos/Topoi](https://en.wikipedia.org/wiki/Topos#Elementary_topoi_(topoi_in_logic))
+
+### Similar tools
+
 [ntask](https://www.ntaskmanager.com/)
 
 [wunderlist](https://www.wunderlist.com/)
