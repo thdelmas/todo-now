@@ -7,8 +7,6 @@ services:
       - '8080:8080'
     volumes:
       - './api:/go/src/app'
-    depends_on:
-     - 'mongo'
       
 
   mongo:
@@ -18,4 +16,5 @@ services:
       - '27100:27017'
     volumes:
       - $PWD/mongo-volume/:/data/db:Z
- 
+    depends_on:
+     - 'api'

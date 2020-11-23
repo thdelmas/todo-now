@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2"
@@ -14,8 +13,7 @@ import (
 
 // Topos obj
 type Topos struct {
-	Text      string    `json:"text" bson:"text"`
-	CreatedAt time.Time `json:"createdAt" bson:"created_at"`
+	Specs map[string]interface{}
 }
 
 var topoi *mgo.Collection
@@ -51,26 +49,25 @@ func createTopos(ctx *gin.Context) {
 	}
 
 	// Read topos
-	topos := &Topos{}
-	err = json.Unmarshal(data, topos)
+	var topos interface{}
+	err = json.Unmarshal([]byte(data), &topos)
 	if err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "Not found!"})
 		return
 	}
-	topos.CreatedAt = time.Now().UTC()
 
 	// Insert new topos
 	if err := topoi.Insert(topos); err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "Not found !"})
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": topos})
+	ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "topos": topos})
 
 	return
 }
 
 func readTopoi(ctx *gin.Context) {
-	result := []Topos{}
+	var result []interface{}
 	if err := topoi.Find(nil).Sort("-created_at").All(&result); err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "No topos found!"})
 	} else {
